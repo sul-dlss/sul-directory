@@ -1,0 +1,117 @@
+* {
+color: #3F3C30;
+font-family: Lucida Grande,Verdana,Arial,sans-serif;
+font-size: 11px;
+line-height: 1.5;
+}
+
+h1 {
+font-size: 1.65em;
+line-height: 1.5em;
+margin-bottom: 10px;
+color: #820000;
+font-weight: normal;
+}
+
+a {
+margin: 0;
+padding: 0;
+vertical-align: baseline;
+background: transparent;
+}
+
+a:link, a:visited, li a.active {
+color: #575246;
+outline: none;
+text-decoration: none;
+}
+
+a {
+border-bottom: 1px dotted #84785A;
+}
+
+table.dataTable {
+clear: both;
+margin: 1em 0;
+width: auto;
+border-collapse: collapse;
+border-spacing: 0;}
+
+thead:first-child {
+border-top: 1px solid #BBB;
+background: #DDD;
+}
+
+thead tr {
+border-bottom: 1px solid #CCC;
+}
+
+th, tr, td {
+padding: 5px 10px;
+vertical-align: middle;
+}
+
+th {
+border-bottom: 3px solid #CCC;
+padding-right: 1em;
+text-align: left;
+font-weight: bold;
+}
+
+tbody {
+border-top: 1px solid #CCC;
+}
+
+tr.even, tr.odd {
+background-color: #EEE;
+border-bottom: 1px solid #CCC;
+padding: 0.1em 0.6em;
+}
+
+tr.odd, tr.odd td.sorting_1 {
+background-color: #F6F6F6;
+}
+
+tr.even, tr.even td.sorting_1 {
+background-color: #ECECEC;
+border-bottom: 1px solid #DDD;
+}
+
+table.display thead th {
+background-color: transparent;
+border-bottom: 0;
+}
+
+.dataTables_length {
+   float: right;
+   text-align: right;
+   width: 40%;
+}
+
+.dataTables_filter {
+   float: left;
+   text-align: left;
+   width: 50%;
+   margin-bottom: 10px;
+}
+
+.paginate_disabled_previous {background: none no-repeat top left; border-bottom: none;}
+
+.paginate_disabled_next {background: none no-repeat top right; border-bottom: none;}
+
+.paginate_enabled_next, .paginate_enabled_next:hover {background: image_url('rightarrow.png') no-repeat top right;}
+
+.paginate_enabled_previous, .paginate_enabled_previous:hover {background: image_url('leftarrow.png') no-repeat top left;}
+
+.paginate_disabled_previous, .paginate_enabled_previous, .paginate_disabled_next, .paginate_enabled_next {height: 16px;}
+
+table.display thead th .sorting_disabled {cursor: default;}
+
+table.display thead th.sorting_asc, table.display thead th.sorting_desc {background: none;}
+
+select.select_filter {width: 150px;}
+
+td:first-child {white-space: nowrap;}
+
+td:first-child a {border-bottom: none;}
+td:first-child a img, #staffdir img {vertical-align: text-bottom;}

@@ -1,0 +1,9 @@
+library:
+  profile_url: 'http://library.stanford.edu/people/'
+
+directory:
+  k5start:
+    options: '-q -f /etc/keytabs/webauth.keytab -U'
+    required: true
+  ldapsearch:
+    options:  -h directory.stanford.edu -b cn=people,dc=stanford,dc=edu

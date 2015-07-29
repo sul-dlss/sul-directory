@@ -1,0 +1,25 @@
+<table id="staffdir">
+  <thead>
+    <tr>
+      <th>Name</th><th>All departments</th><th>Title</th><th>Telephone</th><th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @people.each do |p| %>
+    <tr>
+      <td>
+        <%= p.suDisplayNameLF %>
+        <% if p.lib_profile? %>
+          <%= link_to "http://library.stanford.edu/people/#{p.uid}", target: '_parent' do %>
+            <%= image_tag 'profile.png', alt: 'Profile', title: "See #{p.displayName}'s profile page" %>
+          <% end %>
+        <% end %>
+      </td>
+      <td><%= p.suPrimaryOrganizationName %></td>
+      <td><%= p.title %></td>
+      <td><%= p.telephoneNumber %></td>
+      <td><%= p.mail %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
