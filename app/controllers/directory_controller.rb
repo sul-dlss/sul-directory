@@ -1,4 +1,6 @@
 class DirectoryController < ApplicationController
+  after_action :allow_iframes
+
   def index
     org_code = Rails.application.config.root_org_code
 
@@ -10,5 +12,11 @@ class DirectoryController < ApplicationController
       format.html
       format.xml
     end
+  end
+
+  private
+
+  def allow_iframes
+    response.headers.except! 'X-Frame-Options'
   end
 end
