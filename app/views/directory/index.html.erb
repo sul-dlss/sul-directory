@@ -19,7 +19,7 @@
         <span property="name"><%= p.suPrimaryOrganizationName %></span>
       </td>
       <td property="jobTitle"><%= p.title %></td>
-      <td property="telephone"><%= p.telephoneNumber %></td>
+      <td property="telephone"><%= Array(p.telephoneNumber).first %></td>
       <td property="email"><%= p.mail %></td>
     </tr>
     <% end %>
