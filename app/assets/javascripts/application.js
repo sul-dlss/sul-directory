@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require 'jquery.dataTables.min'
+//= require 'jquery.dataTables.columnFilter'
 //= require_tree .
 
 $(document).ready(function(){
@@ -21,7 +23,8 @@ $(document).ready(function(){
            "oLanguage": { "sSearch" : "Search this list" },
            "oSearch": {"bSmart": false},
             "bStateSave": true,
-           "iDisplayLength": 25
+           "iDisplayLength": 25,
+           "pagingType" : "simple"
          })
         .columnFilter({
                   sPlaceHolder: "head:before",

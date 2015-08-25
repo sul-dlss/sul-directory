@@ -25,11 +25,11 @@ class Person < OpenStruct
   end
 
   def suPrimaryOrganizationID
-    authed_data['suPrimaryOrganizationID'] || 'MISSING'
+    @suPrimaryOrganizationID ||= authed_data['suPrimaryOrganizationID'] || 'MISSING'
   end
 
   def suPrimaryOrganizationName
-    I18n.t(:"directory.suPrimaryOrganizationID.#{suPrimaryOrganizationID}", default: [Organization.find_or_initialize_by(admin_id: suPrimaryOrganizationID).name, ou])
+    @suPrimaryOrganizationName ||= I18n.t(:"directory.suPrimaryOrganizationID.#{suPrimaryOrganizationID}", default: [Organization.find_or_initialize_by(admin_id: suPrimaryOrganizationID).name, ou])
   end
 
   def lib_profile?

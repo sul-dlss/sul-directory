@@ -95,16 +95,16 @@ border-bottom: 0;
    margin-bottom: 10px;
 }
 
-.paginate_disabled_previous {background: none no-repeat top left; border-bottom: none;}
+.paginate_button.disabled.previous {background: none no-repeat top left; border-bottom: none;}
 
-.paginate_disabled_next {background: none no-repeat top right; border-bottom: none;}
+.paginate_button.disabled.next {background: none no-repeat top right; border-bottom: none;}
 
-.paginate_enabled_next, .paginate_enabled_next:hover {background: image_url('rightarrow.png') no-repeat top right;}
+.paginate_button.next { padding-right: 16px; background: image_url('rightarrow.png') no-repeat top right;}
 
-.paginate_enabled_previous, .paginate_enabled_previous:hover {background: image_url('leftarrow.png') no-repeat top left;}
+.paginate_button.previous { padding-left: 16px; background: image_url('leftarrow.png') no-repeat top left;}
 
-.paginate_disabled_previous, .paginate_enabled_previous, .paginate_disabled_next, .paginate_enabled_next {height: 16px;}
-
+.paginate_button {height: 16px; cursor: pointer;}
+.paginate_button.disabled { cursor: not-allowed; }
 table.display thead th .sorting_disabled {cursor: default;}
 
 table.display thead th.sorting_asc, table.display thead th.sorting_desc {background: none;}
@@ -119,4 +119,12 @@ td:first-child a img, #staffdir img {vertical-align: text-bottom;}
 td[property="telephone"] {
   white-space: nowrap;
   max-width: 14ch;
+}
+
+#staffdir_filter input {
+  margin-left: 0.3em;
+}
+
+#staffdir_wrapper {
+  max-width: 1200px;
 }
