@@ -6,19 +6,21 @@
   </thead>
   <tbody>
     <% @people.each do |p| %>
-    <tr>
+    <tr vocab="http://schema.org/" typeof="Person">
       <td>
-        <%= p.suDisplayNameLF %>
+        <span property="name"><%= p.suDisplayNameLF %></span>
         <% if p.lib_profile? %>
-          <%= link_to "http://library.stanford.edu/people/#{p.uid}", target: '_parent' do %>
+          <%= link_to "http://library.stanford.edu/people/#{p.uid}", target: '_parent', property: 'sameAs' do %>
             <%= image_tag 'profile.png', alt: 'Profile', title: "See #{p.displayName}'s profile page" %>
           <% end %>
         <% end %>
       </td>
-      <td><%= p.suPrimaryOrganizationName %></td>
-      <td><%= p.title %></td>
-      <td><%= p.telephoneNumber %></td>
-      <td><%= p.mail %></td>
+      <td property="worksFor" typeof="Organization">
+        <span property="name"><%= p.suPrimaryOrganizationName %></span>
+      </td>
+      <td property="jobTitle"><%= p.title %></td>
+      <td property="telephone"><%= p.telephoneNumber %></td>
+      <td property="email"><%= p.mail %></td>
     </tr>
     <% end %>
   </tbody>
