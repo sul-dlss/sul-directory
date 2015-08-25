@@ -116,4 +116,7 @@ td:first-child {white-space: nowrap;}
 td:first-child a {border-bottom: none;}
 td:first-child a img, #staffdir img {vertical-align: text-bottom;}
 
-td[property="telephone"] { white-space: nowrap; }
+td[property="telephone"] {
+  white-space: nowrap;
+  max-width: 14ch;
+}
