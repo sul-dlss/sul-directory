@@ -1,12 +1,13 @@
 class LdapSearch
-
   class <<self
     include ActiveSupport::Benchmarkable
 
     def in_organization(admin_id)
       Organization.in_tree(Organization.find_by(admin_id: admin_id)).pluck(:admin_id).map do |id|
         search(suprimaryorganizationid: id, auth: true, fields: %w(uid suAffiliation))
-      end.flatten.select { |h| Array(h['suAffiliation']).any? { |p| whitelisted_affiliations.include? p }  }.map { |h| h['uid'] }.compact
+      end.flatten
+        .select { |h| Array(h['suAffiliation']).any? { |p| whitelisted_affiliations.include? p }  }
+        .map { |h| h['uid'] }.compact
     end
 
     def person_info(hash)
@@ -73,7 +74,7 @@ class LdapSearch
     end
 
     def whitelisted_affiliations
-      %w(stanford:staff stanford:staff:academic stanford:staff:onleave)
+      Settings.directory.affiliations
     end
 
     def logger
