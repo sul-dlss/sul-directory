@@ -33,7 +33,7 @@ class Person < OpenStruct
       LdapSearch.in_organization(admin_id)
     end
 
-    uids.map { |uid| find_by_uid(uid) }.compact
+    Parallel.map(uids) { |uid| find_by_uid(uid) }.compact
   end
 
   def initialize(hash)

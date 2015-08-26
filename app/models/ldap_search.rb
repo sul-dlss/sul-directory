@@ -10,9 +10,9 @@ class LdapSearch
     # @param [String] an organization's admin_id
     # @return [Array<String>] an array of uids
     def in_organization(admin_id)
-      Organization.in_tree(Organization.find_by(admin_id: admin_id)).pluck(:admin_id).map do |id|
-        search(suprimaryorganizationid: id, auth: true, fields: %w(uid suAffiliation))
-      end.flatten
+      admin_ids = Organization.in_tree(Organization.find_by(admin_id: admin_id)).pluck(:admin_id)
+      Parallel.map(admin_ids) { |id| search(suprimaryorganizationid: id, auth: true, fields: %w(uid suAffiliation)) }
+        .flatten
         .select { |h| Array(h['suAffiliation']).any? { |p| whitelisted_affiliations.include? p }  }
         .map { |h| h['uid'] }.compact
     end

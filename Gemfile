@@ -95,3 +95,4 @@ gem 'squash_rails', '1.3.3', require: 'squash/rails'
 gem 'is_it_working'
 
 gem 'config'
+gem 'parallel'
