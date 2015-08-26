@@ -40,8 +40,8 @@ Configuration is handled through the [RailsConfig](/railsconfig/rails_config) se
 
 ### Harvesting the org chart
 
-```ruby
-Organization.import_budget_chart!
+```console
+$ rake db:seed
 ```
 
 ## Testing
