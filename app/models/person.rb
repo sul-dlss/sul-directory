@@ -29,7 +29,7 @@ class Person < OpenStruct
   end
 
   def suPrimaryOrganizationID
-    @suPrimaryOrganizationID ||= authed_data['suPrimaryOrganizationID'] || 'MISSING'
+    self['suPrimaryOrganizationID'] || authed_data['suPrimaryOrganizationID'] || 'MISSING'
   end
 
   def suPrimaryOrganizationName
