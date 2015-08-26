@@ -10,9 +10,7 @@ class LdapSearch
     end
 
     def person_info(hash)
-      Rails.cache.fetch("ldap/person_info/#{hash.inspect}", expires_in: 3.hours) do
-        search(hash.merge(fields: [])).detect { |x| x['dn'] }
-      end
+      search(hash.merge(fields: [])).detect { |x| x['dn'] }
     end
 
     private

@@ -3,12 +3,16 @@ class Person < OpenStruct
   include ActiveSupport::Benchmarkable
 
   def self.find(suRegID)
-    hash = LdapSearch.person_info(suRegID: suRegID)
+    hash = Rails.cache.fetch("person/#{suRegID}", expires_in: 3.hours) do
+      LdapSearch.person_info(suRegID: suRegID)
+    end
     new(hash) if hash
   end
 
   def self.find_by_uid(uid)
-    hash = LdapSearch.person_info(uid: uid)
+    hash = Rails.cache.fetch("person/#{uid}", expires_in: 3.hours) do
+      LdapSearch.person_info(uid: uid)
+    end
     new(hash) if hash
   end
 
@@ -35,7 +39,7 @@ class Person < OpenStruct
   def lib_profile?
     return false unless uid.present?
 
-    Rails.cache.fetch("people/#{org_code}/#{uid}", expires_in: 24.hours) do
+    Rails.cache.fetch("people/drupal/#{org_code}/#{uid}", expires_in: 24.hours) do
       benchmark "People Page (#{uid})" do
         response = Hurley.head(Settings.library.profile_url + uid) do |req|
           req.options.redirection_limit = 0
@@ -56,7 +60,9 @@ class Person < OpenStruct
   private
 
   def authed_data
-    LdapSearch.person_info(uid: uid, auth: true) || {}
+    @authed_data ||= Rails.cache.fetch("person/auth/#{uid}", expires_in: 3.hours) do
+      LdapSearch.person_info(uid: uid, auth: true) || {}
+    end
   end
 
   def logger
