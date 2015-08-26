@@ -2,6 +2,7 @@ library:
   profile_url: 'http://library.stanford.edu/people/'
 
 directory:
+  org_code: JAAA
   affiliations:
     - stanford:staff
     - stanford:staff:academic

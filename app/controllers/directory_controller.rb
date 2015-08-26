@@ -2,7 +2,7 @@ class DirectoryController < ApplicationController
   after_action :allow_iframes
 
   def index
-    org_code = Rails.application.config.root_org_code
+    org_code = Settings.directory.org_code
 
     @people = Rails.cache.fetch("people/#{org_code}", expires_in: 24.hours) do
       Person.in_organization(org_code).sort_by(&:suDisplayNameLF)
