@@ -1,8 +1,12 @@
+##
+# Hierarchical organizations and names
 class Organization < ActiveRecord::Base
   belongs_to :parent, class_name: 'Organization'
   has_many :children, foreign_key: 'parent_id', class_name: 'Organization'
 
   class << self
+    ##
+    # Get the full list of organizations nested under a parent organization
     def in_tree(parent)
       ids = []
       new_ids = Array.wrap(parent)
@@ -21,6 +25,8 @@ class Organization < ActiveRecord::Base
       where(id: ids)
     end
 
+    ##
+    # Import the registry's organization chart into the database
     def import_budget_chart!
       organizations.each do |sorg|
         org = Organization.find_or_initialize_by(admin_id: sorg[:admin_id])

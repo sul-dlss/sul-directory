@@ -1,7 +1,14 @@
+# Wrapper for the `ldapsearch` command (we shell out so we can use SASL authentication
+# with our kerberos credentials, because it's not clear we can do that from ruby-land
+# reliably).
 class LdapSearch
   class <<self
     include ActiveSupport::Benchmarkable
 
+    ##
+    # Get the uids for members of an organization hierarchy
+    # @param [String] an organization's admin_id
+    # @return [Array<String>] an array of uids
     def in_organization(admin_id)
       Organization.in_tree(Organization.find_by(admin_id: admin_id)).pluck(:admin_id).map do |id|
         search(suprimaryorganizationid: id, auth: true, fields: %w(uid suAffiliation))
@@ -10,6 +17,13 @@ class LdapSearch
         .map { |h| h['uid'] }.compact
     end
 
+    ##
+    # Get the directory information for a single user
+    # @param [Hash] hash LDAP filters to use to find the user
+    # @option hash [String] :uid
+    # @option hash [String] :suRegID
+    # @option hash [Boolean] :auth (false) whether to use authentication when querying the directory
+    # @option hash [Array<String>] :fields (empty, meaning all available) list of fields to return from the directory 
     def person_info(hash)
       search(hash.merge(fields: [])).detect { |x| x['dn'] }
     end

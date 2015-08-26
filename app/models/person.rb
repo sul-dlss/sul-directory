@@ -2,20 +2,32 @@ require 'net/http'
 class Person < OpenStruct
   include ActiveSupport::Benchmarkable
 
-  def self.find(suRegID)
-    hash = Rails.cache.fetch("person/#{suRegID}", expires_in: 3.hours) do
-      LdapSearch.person_info(suRegID: suRegID)
+  ##
+  # Find a user by their registry ID (note: this may require authenticated access)
+  # @param [String] suRegID
+  # @param [Hash] opts
+  # @option opts [Boolean] :auth
+  def self.find(suRegID, opts = {})
+    hash = Rails.cache.fetch("person/#{suRegID}", expires_in: 24.hours) do
+      LdapSearch.person_info(opts.merge(suRegID: suRegID))
     end
     new(hash) if hash
   end
 
-  def self.find_by_uid(uid)
-    hash = Rails.cache.fetch("person/#{uid}", expires_in: 3.hours) do
-      LdapSearch.person_info(uid: uid)
+  ##
+  # Find a user by their primary sunetID
+  # @param [String] uid
+  # @param [Hash] opts
+  # @option opts [Boolean] :auth
+  def self.find_by_uid(uid, opts = {})
+    hash = Rails.cache.fetch("person/#{uid}", expires_in: 24.hours) do
+      LdapSearch.person_info(opts.merge(uid: uid))
     end
     new(hash) if hash
   end
 
+  ##
+  # Fetch all the users in a given organization
   def self.in_organization(admin_id)
     uids = Rails.cache.fetch("people/in/#{admin_id}", expires_in: 24.hours) do
       LdapSearch.in_organization(admin_id)
@@ -29,7 +41,7 @@ class Person < OpenStruct
   end
 
   def id
-    suRegID
+    suRegID || uid
   end
 
   def suPrimaryOrganizationID
@@ -40,6 +52,8 @@ class Person < OpenStruct
     @suPrimaryOrganizationName ||= I18n.t(:"directory.suPrimaryOrganizationID.#{suPrimaryOrganizationID}", default: [Organization.find_or_initialize_by(admin_id: suPrimaryOrganizationID).name, ou])
   end
 
+  ##
+  # Check if the user has a library "people page"
   def lib_profile?
     return false unless uid.present?
 
@@ -55,6 +69,12 @@ class Person < OpenStruct
     end
   end
 
+  ##
+  # Try to construct a StanfordWho link for the user. This turns out to be harder
+  # than expected because of the variety of privacy settings the user may have applied.
+  # To do this better, we need to request access to those privacy settings so we 
+  # can make an educated guess about the values that will actually turn up the 
+  # given user..
   def stanford_who_url
     search_string = mail || Array(suSunetID).first || displayName.gsub(/\s/, '+')
 
@@ -64,7 +84,7 @@ class Person < OpenStruct
   private
 
   def authed_data
-    @authed_data ||= Rails.cache.fetch("person/auth/#{uid}", expires_in: 3.hours) do
+    @authed_data ||= Rails.cache.fetch("person/auth/#{uid}", expires_in: 24.hours) do
       LdapSearch.person_info(uid: uid, auth: true) || {}
     end
   end
