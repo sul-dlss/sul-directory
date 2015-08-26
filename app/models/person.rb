@@ -56,7 +56,7 @@ class Person < OpenStruct
   end
 
   def suPrimaryOrganizationName
-    @suPrimaryOrganizationName ||= I18n.t(:"directory.suPrimaryOrganizationID.#{suPrimaryOrganizationID}", default: [Organization.find_or_initialize_by(admin_id: suPrimaryOrganizationID).name, ou])
+    @suPrimaryOrganizationName ||= I18n.t(:"directory.suPrimaryOrganizationID.#{suPrimaryOrganizationID}", default: [Organization.find_or_initialize_by(admin_id: suPrimaryOrganizationID).name, ou, ''])
   end
 
   ##
