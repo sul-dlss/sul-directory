@@ -4,9 +4,7 @@ class DirectoryController < ApplicationController
   def index
     org_code = Settings.directory.org_code
 
-    @people = Rails.cache.fetch("people/#{org_code}", expires_in: 24.hours) do
-      Person.in_organization(org_code).sort_by(&:suDisplayNameLF)
-    end
+    @people = Person.in_organization(org_code).sort_by(&:suDisplayNameLF)
 
     respond_to do |format|
       format.html

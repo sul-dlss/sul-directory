@@ -17,7 +17,11 @@ class Person < OpenStruct
   end
 
   def self.in_organization(admin_id)
-    LdapSearch.in_organization(admin_id).map { |uid| find_by_uid(uid) }.compact
+    uids = Rails.cache.fetch("people/in/#{admin_id}", expires_in: 24.hours) do
+      LdapSearch.in_organization(admin_id)
+    end
+
+    uids.map { |uid| find_by_uid(uid) }.compact
   end
 
   def initialize(hash)
