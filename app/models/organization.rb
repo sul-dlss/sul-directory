@@ -1,6 +1,6 @@
 class Organization < ActiveRecord::Base
-  belongs_to :parent, class_name: "Organization"
-  has_many :children, foreign_key: "parent_id", class_name: "Organization"
+  belongs_to :parent, class_name: 'Organization'
+  has_many :children, foreign_key: 'parent_id', class_name: 'Organization'
 
   class << self
     def in_tree(parent)

@@ -30,14 +30,14 @@ class LdapSearch
         end
       end.join
 
-      filter = "(&#{str})"
+      "(&#{str})"
     end
 
     def search(hash)
       filter = build_search_filter(hash)
 
       response = benchmark "LDAP: #{filter}" do
-        ldapsearch_cmd = %Q(ldapsearch #{Settings.directory.ldapsearch.options} #{'-x' unless hash[:auth]} "#{filter}" #{Array(hash[:fields]).join(' ')})
+        ldapsearch_cmd = %(ldapsearch #{Settings.directory.ldapsearch.options} #{'-x' unless hash[:auth]} "#{filter}" #{Array(hash[:fields]).join(' ')})
         if hash[:auth] && Settings.directory.k5start.required
           `k5start #{Settings.directory.k5start.options} -- sh -c '#{ldapsearch_cmd}'`
         else
@@ -46,7 +46,7 @@ class LdapSearch
       end
 
       response.split("\n")
-        .slice_when { |line| line =~ /^# [0-9a-f]+, people, stanford.edu$/}
+        .slice_when { |line| line =~ /^# [0-9a-f]+, people, stanford.edu$/ }
         .map do |entry|
           last_key = nil
 
