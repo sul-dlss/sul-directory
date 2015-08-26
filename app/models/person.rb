@@ -33,7 +33,7 @@ class Person < OpenStruct
       LdapSearch.in_organization(admin_id)
     end
 
-    Parallel.map(uids) { |uid| find_by_uid(uid) }.compact
+    Parallel.map(uids) { |uid| find_by_uid(uid).try(:preload) }.compact
   end
 
   def initialize(hash)
@@ -42,6 +42,13 @@ class Person < OpenStruct
 
   def id
     suRegID || uid
+  end
+
+  def preload
+    suPrimaryOrganizationID
+    lib_profile?
+
+    self
   end
 
   def suPrimaryOrganizationID
