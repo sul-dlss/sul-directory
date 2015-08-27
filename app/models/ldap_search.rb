@@ -29,39 +29,18 @@ class LdapSearch
     end
 
     def search(hash)
-      filter = build_search_filter(hash)
+      benchmark "LDAP: #{filter}" do
+        filters = hash.reject(:fields, :auth)
 
-      response = benchmark "LDAP: #{filter}" do
-        ldapsearch_cmd = %(ldapsearch #{Settings.directory.ldapsearch.options} #{'-x' unless hash[:auth]} "#{filter}" #{Array(hash[:fields]).join(' ')})
-        if hash[:auth] && Settings.directory.k5start.required
-          `k5start #{Settings.directory.k5start.options} -- sh -c '#{ldapsearch_cmd}'`
-        else
-          `#{ldapsearch_cmd}`
-        end
+        Command.new(Settings.directory.ldapsearch.options)
+          .anonymous(hash[:auth] == true)
+          .filters(filters)
+          .fields(Array(hash[:fields]))
+          .exec!
       end
-
-      LdapSearch::Response.new(response).to_a
     end
 
     private
-
-    def build_search_filter(filters)
-      str = filters.map do |k, v|
-        next if [:auth, :fields].include? k
-
-        if v.is_a? Array
-          str = v.map do |v1|
-            "(#{k}=#{v1})"
-          end
-
-          "(|#{str.join})"
-        else
-          "(#{k}=#{v})"
-        end
-      end.join
-
-      "(&#{str})"
-    end   
 
     def whitelisted_affiliations
       Settings.directory.affiliations
@@ -76,6 +55,76 @@ class LdapSearch
     end
   end
 
+  ##
+  # Build and execute an ldapsearch query
+  class Command
+    attr_reader :options
+
+    def initialize(options = '')
+      @options = options
+      @filters = {}
+      @fields = []
+    end
+
+    def anonymous(bool = true)
+      @anonymous = bool
+      self
+    end
+
+    def anonymous?
+      @anonymous
+    end
+
+    def filters(filters)
+      @filters.merge! filters
+      self
+    end
+
+    def fields(fields)
+      @fields += fields
+      self
+    end
+
+    def to_s
+      if Settings.directory.k5start.required && !anonymous?
+        with_k5start(to_ldapsearch_s)
+      else
+        to_ldapsearch_s
+      end
+    end
+
+    def exec!
+      LdapSearch::Response.new(`#{to_s}`).to_a
+    end
+
+    private
+
+    def to_ldapsearch_s
+      ['ldapsearch', options, ('-x' if anonymous?), %("#{build_search_filter(@filters)}"), (@fields.join(' ') if @fields.any?)].compact.join(' ')
+    end
+
+    def with_k5start(str)
+      %(k5start #{Settings.directory.k5start.options} -- sh -c '#{str}')
+    end
+
+    def build_search_filter(filters)
+      str = filters.map do |k, v|
+        next if [:auth].include? k
+
+        if v.is_a? Array
+          str = v.map do |v1|
+            "(#{k}=#{v1})"
+          end
+
+          "(|#{str.join})"
+        else
+          "(#{k}=#{v})"
+        end
+      end.join
+
+      "(&#{str})"
+    end   
+  end
   ##
   # Parser for ldapsearch command responses
   class Response

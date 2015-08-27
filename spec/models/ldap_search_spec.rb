@@ -102,4 +102,39 @@ describe LdapSearch do
       end
     end
   end
+
+  describe LdapSearch::Command do
+    before do
+      allow(Settings.directory.k5start).to receive(:required).and_return(false)
+    end
+
+    it 'includes the requested fields' do
+      expect(described_class.new.fields(%w(a b c)).to_s).to end_with 'a b c'
+    end
+
+    describe 'filters' do
+      it 'includes simple filters' do
+        expect(described_class.new.filters(uid: 'a').to_s).to end_with '"(&(uid=a))"'
+      end
+
+      it 'makes multivalued requests' do
+        expect(described_class.new.filters(uid: ['a', 'b']).to_s).to end_with '"(&(|(uid=a)(uid=b)))"'
+      end
+
+      it 'makes compound queries' do
+        expect(described_class.new.filters(uid: 'a', suAffiliation: 'stanford:staff').to_s).to end_with '"(&(uid=a)(suAffiliation=stanford:staff))"'
+      end
+    end
+
+    describe 'anonymous' do
+      it 'builds a standard, authenticated query' do
+        expect(described_class.new.anonymous(false).to_s).not_to include '-x'
+      end
+
+      it 'forces simple authentication without a username or password' do
+        expect(described_class.new.anonymous(true).to_s).to include '-x'
+      end
+    end
+  end
+
 end
