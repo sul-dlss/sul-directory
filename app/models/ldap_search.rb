@@ -25,7 +25,22 @@ class LdapSearch
     # @option hash [Boolean] :auth (false) whether to use authentication when querying the directory
     # @option hash [Array<String>] :fields (empty, meaning all available) list of fields to return from the directory 
     def person_info(hash)
-      search(hash.merge(fields: [])).detect { |x| x['dn'] }
+      search(default_person_info_params.merge(hash)).detect { |x| x['dn'] }
+    end
+
+    def search(hash)
+      filter = build_search_filter(hash)
+
+      response = benchmark "LDAP: #{filter}" do
+        ldapsearch_cmd = %(ldapsearch #{Settings.directory.ldapsearch.options} #{'-x' unless hash[:auth]} "#{filter}" #{Array(hash[:fields]).join(' ')})
+        if hash[:auth] && Settings.directory.k5start.required
+          `k5start #{Settings.directory.k5start.options} -- sh -c '#{ldapsearch_cmd}'`
+        else
+          `#{ldapsearch_cmd}`
+        end
+      end
+
+      LdapSearch::Response.new(response).to_a
     end
 
     private
@@ -46,26 +61,38 @@ class LdapSearch
       end.join
 
       "(&#{str})"
+    end   
+
+    def whitelisted_affiliations
+      Settings.directory.affiliations
     end
 
-    def search(hash)
-      filter = build_search_filter(hash)
+    def logger
+      Rails.logger
+    end
 
-      response = benchmark "LDAP: #{filter}" do
-        ldapsearch_cmd = %(ldapsearch #{Settings.directory.ldapsearch.options} #{'-x' unless hash[:auth]} "#{filter}" #{Array(hash[:fields]).join(' ')})
-        if hash[:auth] && Settings.directory.k5start.required
-          `k5start #{Settings.directory.k5start.options} -- sh -c '#{ldapsearch_cmd}'`
-        else
-          `#{ldapsearch_cmd}`
-        end
-      end
+    def default_person_info_params
+      { fields: [] }
+    end
+  end
 
+  ##
+  # Parser for ldapsearch command responses
+  class Response
+    attr_reader :response
+
+    def initialize(response)
+      @response = response
+    end
+
+    def to_a
       response.split("\n")
-        .slice_when { |line| line =~ /^# [0-9a-f]+, people, stanford.edu$/ }
+        .slice_when { |line| line =~ record_separator }
         .map do |entry|
+          # we use last_key to keep track of multi-line responses
           last_key = nil
 
-          entry.map { |line| line.split(': ', 2) }
+          entry.map { |line| line.split(key_separator, 2) }
             .each_with_object({}) do |(k, v), h|
               next if k.blank?
 
@@ -87,12 +114,14 @@ class LdapSearch
         end
     end
 
-    def whitelisted_affiliations
-      Settings.directory.affiliations
+    private
+
+    def record_separator
+      /^# [0-9a-f]+, people, stanford.edu$/
     end
 
-    def logger
-      Rails.logger
+    def key_separator
+      ': '
     end
   end
 end
