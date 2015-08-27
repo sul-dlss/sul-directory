@@ -1,4 +1,3 @@
-require 'net/http'
 class Person < OpenStruct
   include ActiveSupport::Benchmarkable
 
