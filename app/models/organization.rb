@@ -4,6 +4,8 @@ class Organization < ActiveRecord::Base
   belongs_to :parent, class_name: 'Organization'
   has_many :children, foreign_key: 'parent_id', class_name: 'Organization'
 
+  validates :admin_id, presence: true, uniqueness: true
+
   class << self
     ##
     # Get the full list of organizations nested under a parent organization

@@ -5,8 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Code</th>
-      <th>Level</th>
+      <th>Admin ID</th>
       <th>Name</th>
       <th>Parent</th>
       <th colspan="3"></th>
@@ -16,8 +15,7 @@
   <tbody>
     <% @organizations.each do |organization| %>
       <tr>
-        <td><%= organization.code %></td>
-        <td><%= organization.level %></td>
+        <td><%= organization.admin_id %></td>
         <td><%= organization.name %></td>
         <td><%= organization.parent_id %></td>
         <td><%= link_to 'Show', organization %></td>

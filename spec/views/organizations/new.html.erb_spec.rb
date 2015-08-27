@@ -3,8 +3,7 @@ require 'rails_helper'
 RSpec.describe 'organizations/new', type: :view do
   before(:each) do
     assign(:organization, Organization.new(
-                            code: 'MyString',
-                            level: 'MyString',
+                            admin_id: 'MyString',
                             name: 'MyString',
                             parent_id: 1
     ))
@@ -14,9 +13,7 @@ RSpec.describe 'organizations/new', type: :view do
     render
 
     assert_select 'form[action=?][method=?]', organizations_path, 'post' do
-      assert_select 'input#organization_code[name=?]', 'organization[code]'
-
-      assert_select 'input#organization_level[name=?]', 'organization[level]'
+      assert_select 'input#organization_admin_id[name=?]', 'organization[admin_id]'
 
       assert_select 'input#organization_name[name=?]', 'organization[name]'
 
