@@ -33,7 +33,7 @@ class LdapSearch
         filters = hash.except(:fields, :auth)
 
         Command.new(Settings.directory.ldapsearch.options)
-          .anonymous(hash[:auth] == true)
+          .anonymous(!hash[:auth])
           .filters(filters)
           .fields(Array(hash[:fields]))
           .exec!
