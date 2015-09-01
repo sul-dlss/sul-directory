@@ -18,7 +18,6 @@ xml.staffdir do
         xml.title p.title
         xml.org_id p.suPrimaryOrganizationID
         xml.org_name p.suPrimaryOrganizationName
-        xml.StanfordWhoLink p.stanford_who_url
       end
     end
   end
