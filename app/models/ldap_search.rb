@@ -29,8 +29,8 @@ class LdapSearch
     end
 
     def search(hash)
-      benchmark "LDAP: #{filter}" do
-        filters = hash.reject(:fields, :auth)
+      benchmark "LDAP: #{hash}" do
+        filters = hash.except(:fields, :auth)
 
         Command.new(Settings.directory.ldapsearch.options)
           .anonymous(hash[:auth] == true)
