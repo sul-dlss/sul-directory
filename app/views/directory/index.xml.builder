@@ -11,6 +11,7 @@ xml.staffdir do
       xml.entry do
         xml.published 1
         xml.sunetid p.uid
+        xml.mail p.mail
         xml.telephonenumber p.telephoneNumber
         xml.displayname p.displayName
         xml.sudisplaynamefirst p.suDisplayNameFirst
