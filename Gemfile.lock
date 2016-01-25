@@ -58,6 +58,8 @@ GEM
       sshkit (~> 1.2)
     capistrano-one_time_key (0.0.1)
       capistrano (~> 3.0)
+    capistrano-passenger (0.2.0)
+      capistrano (~> 3.0)
     capistrano-rails (1.1.6)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -96,6 +98,11 @@ GEM
     debug_inspector (0.0.2)
     deep_merge (1.0.1)
     diff-lcs (1.2.5)
+    dlss-capistrano (3.2.0)
+      capistrano (~> 3.0)
+      capistrano-bundle_audit (>= 0.0.3)
+      capistrano-one_time_key
+      capistrano-releaseboard
     docile (1.1.5)
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
@@ -127,11 +134,6 @@ GEM
     libv8 (3.16.14.13)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
-    lyberteam-capistrano-devel (3.2.0)
-      capistrano (~> 3.0)
-      capistrano-bundle_audit (>= 0.0.3)
-      capistrano-one_time_key
-      capistrano-releaseboard
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.99)
@@ -288,6 +290,7 @@ DEPENDENCIES
   byebug
   capistrano (~> 3.0)
   capistrano-bundler
+  capistrano-passenger
   capistrano-rails
   capistrano-rvm
   capybara
@@ -295,13 +298,13 @@ DEPENDENCIES
   config
   coveralls
   database_cleaner
+  dlss-capistrano
   factory_girl_rails
   hurley
   is_it_working
   jasmine-jquery-rails
   jbuilder (~> 2.0)
   jquery-rails
-  lyberteam-capistrano-devel
   mysql2 (~> 0.3.0)
   nokogiri
   parallel

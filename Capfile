@@ -20,6 +20,7 @@ require 'capistrano/deploy'
 # require 'capistrano/chruby'
 require 'capistrano/bundler'
 require 'capistrano/rails'
+require 'capistrano/passenger'
 require 'dlss/capistrano'
 require 'squash/rails/capistrano3'
 
