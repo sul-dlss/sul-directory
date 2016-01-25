@@ -12,7 +12,7 @@ xml.staffdir do
         xml.published 1
         xml.sunetid p.uid
         xml.mail p.mail
-        xml.telephonenumber p.telephoneNumber
+        xml.telephonenumber Array(p.telephoneNumber).join(', ')
         xml.displayname p.displayName
         xml.sudisplaynamefirst p.suDisplayNameFirst
         xml.sudisplaynamelast p.suDisplayNameLast
