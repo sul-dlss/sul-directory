@@ -78,8 +78,8 @@ class Person < OpenStruct
   ##
   # Try to construct a StanfordWho link for the user. This turns out to be harder
   # than expected because of the variety of privacy settings the user may have applied.
-  # To do this better, we need to request access to those privacy settings so we 
-  # can make an educated guess about the values that will actually turn up the 
+  # To do this better, we need to request access to those privacy settings so we
+  # can make an educated guess about the values that will actually turn up the
   # given user..
   def stanford_who_url
     search_string = mail || Array(suSunetID).first || displayName.gsub(/\s/, '+')

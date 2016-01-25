@@ -3,17 +3,17 @@ require 'rails_helper'
 RSpec.describe 'organizations/index', type: :view do
   before(:each) do
     assign(:organizations, [
-      Organization.create!(
-        admin_id: 'Code A',
-        name: 'Name',
-        parent_id: 1
-      ),
-      Organization.create!(
-        admin_id: 'Code B',
-        name: 'Name',
-        parent_id: 1
-      )
-    ])
+             Organization.create!(
+               admin_id: 'Code A',
+               name: 'Name',
+               parent_id: 1
+             ),
+             Organization.create!(
+               admin_id: 'Code B',
+               name: 'Name',
+               parent_id: 1
+             )
+           ])
   end
 
   it 'renders a list of organizations' do

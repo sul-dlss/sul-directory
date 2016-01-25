@@ -70,7 +70,7 @@ describe LdapSearch do
     end
 
     it 'parses multi-line values' do
-      expect(subject.first['multiline']).to eq 'this is a valuethat spans multiple lines' 
+      expect(subject.first['multiline']).to eq 'this is a valuethat spans multiple lines'
     end
 
     it 'parses multi-valued values' do
@@ -83,7 +83,7 @@ describe LdapSearch do
     end
 
     context 'with a multi-record response' do
-      let(:response) do 
+      let(:response) do
         <<-EOR.strip_heredoc
           # 0001, people, stanford.edu
           uid: 0001
@@ -118,7 +118,7 @@ describe LdapSearch do
       end
 
       it 'makes multivalued requests' do
-        expect(described_class.new.filters(uid: ['a', 'b']).to_s).to end_with '"(&(|(uid=a)(uid=b)))"'
+        expect(described_class.new.filters(uid: %w(a b)).to_s).to end_with '"(&(|(uid=a)(uid=b)))"'
       end
 
       it 'makes compound queries' do

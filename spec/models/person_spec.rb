@@ -10,7 +10,6 @@ describe Person do
     end
   end
 
-
   it 'provides method access to the hash' do
     expect(Person.new(uid: 'a').uid).to eq 'a'
   end

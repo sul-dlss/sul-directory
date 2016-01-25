@@ -12,9 +12,9 @@ class LdapSearch
     def in_organization(admin_id)
       admin_ids = Organization.in_tree(Organization.find_by(admin_id: admin_id)).pluck(:admin_id)
       Parallel.map(admin_ids) { |id| search(suprimaryorganizationid: id, auth: true, fields: %w(uid suAffiliation)) }
-        .flatten
-        .select { |h| Array(h['suAffiliation']).any? { |p| whitelisted_affiliations.include? p }  }
-        .map { |h| h['uid'] }.compact
+              .flatten
+              .select { |h| Array(h['suAffiliation']).any? { |p| whitelisted_affiliations.include? p } }
+              .map { |h| h['uid'] }.compact
     end
 
     ##
@@ -23,7 +23,7 @@ class LdapSearch
     # @option hash [String] :uid
     # @option hash [String] :suRegID
     # @option hash [Boolean] :auth (false) whether to use authentication when querying the directory
-    # @option hash [Array<String>] :fields (empty, meaning all available) list of fields to return from the directory 
+    # @option hash [Array<String>] :fields (empty, meaning all available) list of fields to return from the directory
     def person_info(hash)
       search(default_person_info_params.merge(hash)).detect { |x| x['dn'] }
     end
@@ -33,10 +33,10 @@ class LdapSearch
         filters = hash.except(:fields, :auth)
 
         Command.new(Settings.directory.ldapsearch.options)
-          .anonymous(!hash[:auth])
-          .filters(filters)
-          .fields(Array(hash[:fields]))
-          .exec!
+               .anonymous(!hash[:auth])
+               .filters(filters)
+               .fields(Array(hash[:fields]))
+               .exec!
       end
     end
 
@@ -123,7 +123,7 @@ class LdapSearch
       end.join
 
       "(&#{str})"
-    end   
+    end
   end
   ##
   # Parser for ldapsearch command responses
@@ -136,31 +136,31 @@ class LdapSearch
 
     def to_a
       response.split("\n")
-        .slice_when { |line| line =~ record_separator }
-        .map do |entry|
-          # we use last_key to keep track of multi-line responses
-          last_key = nil
+              .slice_when { |line| line =~ record_separator }
+              .map do |entry|
+        # we use last_key to keep track of multi-line responses
+        last_key = nil
 
-          entry.map { |line| line.split(key_separator, 2) }
-            .each_with_object({}) do |(k, v), h|
-              next if k.blank?
+        entry.map { |line| line.split(key_separator, 2) }
+             .each_with_object({}) do |(k, v), h|
+          next if k.blank?
 
-              if v.blank? && k =~ /^\s+/ && last_key
-                if h[last_key].is_a? Array
-                  h[last_key].last << k.strip
-                else
-                  h[last_key] += k.strip
-                end
-              elsif h.key?(k)
-                h[k] = Array(h[k]) unless h[k].is_a?(Array)
-                h[k] << v.strip if v
-                last_key = k
-              else
-                h[k] = v.strip if v
-                last_key = k
-              end
+          if v.blank? && k =~ /^\s+/ && last_key
+            if h[last_key].is_a? Array
+              h[last_key].last << k.strip
+            else
+              h[last_key] += k.strip
             end
+          elsif h.key?(k)
+            h[k] = Array(h[k]) unless h[k].is_a?(Array)
+            h[k] << v.strip if v
+            last_key = k
+          else
+            h[k] = v.strip if v
+            last_key = k
+          end
         end
+      end
     end
 
     private
