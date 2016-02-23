@@ -3,8 +3,7 @@ lock '3.4.0'
 
 set :application, 'sul-directory'
 set :repo_url, 'https://github.com/sul-dlss/sul-directory.git'
-set :deploy_host, ask("Server", 'e.g. hostname with no ".stanford.edu" or server node designator')
-ask :user, proc { `whoami`.chomp }.call
+set :user, 'directory'
 
 # Default branch is :master
 set :branch, 'master'
