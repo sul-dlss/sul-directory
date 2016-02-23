@@ -49,7 +49,7 @@ class Organization < ActiveRecord::Base
 
     def budget_orgchart
       url = 'http://registry.stanford.edu/reference/OrgTreeAdministrative.xml'
-      response = Hurley.get(url)
+      response = Faraday.get(url)
       Nokogiri::XML(response.body)
     end
   end
