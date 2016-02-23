@@ -65,10 +65,7 @@ class Person < OpenStruct
 
     Rails.cache.fetch("people/drupal/#{org_code}/#{uid}", expires_in: 24.hours) do
       benchmark "People Page (#{uid})" do
-        response = Hurley.head(Settings.library.profile_url + uid) do |req|
-          req.options.redirection_limit = 0
-          req.options.timeout = 6
-        end
+        response = profile_client.head uid
 
         response.success?
       end
@@ -97,5 +94,13 @@ class Person < OpenStruct
 
   def logger
     Rails.logger
+  end
+
+  def profile_client
+    Faraday.new(Settings.library.profile_url) do |faraday|
+      faraday.use FaradayMiddleware::FollowRedirects, limit: 10
+      faraday.adapter :net_http
+      faraday.options.timeout = 6
+    end
   end
 end

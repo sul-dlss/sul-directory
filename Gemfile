@@ -74,7 +74,7 @@ end
 
 
 gem 'nokogiri'
-gem 'hurley'
+gem 'faraday'
 
 # Use Capistrano for deployment
 group :deployment do
