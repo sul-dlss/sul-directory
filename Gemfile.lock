@@ -112,6 +112,8 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.10.0)
+      faraday (>= 0.7.4, < 0.10)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -289,6 +291,7 @@ DEPENDENCIES
   dlss-capistrano
   factory_girl_rails
   faraday
+  faraday_middleware
   is_it_working
   jasmine-jquery-rails
   jbuilder (~> 2.0)
