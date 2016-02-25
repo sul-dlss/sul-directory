@@ -75,7 +75,6 @@ end
 
 gem 'nokogiri'
 gem 'faraday'
-gem 'faraday_middleware'
 
 # Use Capistrano for deployment
 group :deployment do

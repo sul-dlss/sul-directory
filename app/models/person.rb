@@ -98,7 +98,6 @@ class Person < OpenStruct
 
   def profile_client
     Faraday.new(Settings.library.profile_url) do |faraday|
-      faraday.use FaradayMiddleware::FollowRedirects, limit: 10
       faraday.adapter :net_http
       faraday.options.timeout = 6
     end
