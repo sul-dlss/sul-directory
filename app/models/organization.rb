@@ -1,7 +1,7 @@
 ##
 # Hierarchical organizations and names
 class Organization < ActiveRecord::Base
-  belongs_to :parent, class_name: 'Organization'
+  belongs_to :parent, class_name: 'Organization', optional: true
   has_many :children, foreign_key: 'parent_id', class_name: 'Organization'
 
   validates :admin_id, presence: true, uniqueness: true
