@@ -17,7 +17,7 @@
 //= require 'jquery.dataTables.columnFilter'
 //= require_tree .
 
-$(document).ready(function(){
+$(document).on('turbolinks:load', function(){
      $('#staffdir').dataTable(
          { "aoColumns": [ null, { "bSortable": false }, { "bSortable": false }, { "bSortable": false }, { "bSortable": false } ],
            "oLanguage": { "sSearch" : "Search this list" },
