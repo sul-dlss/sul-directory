@@ -1,6 +1,3 @@
-# config valid only for current version of Capistrano
-lock '3.6.0'
-
 set :application, 'sul-directory'
 set :repo_url, 'https://github.com/sul-dlss/sul-directory.git'
 set :user, 'directory'
