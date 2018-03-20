@@ -2,13 +2,13 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', group: [:development, :test]
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 3.7'
 # Use mysql as the database when running on the server environment
-gem 'mysql2', '~> 0.3.0', group: :production
+gem 'mysql2', '~> 0.4.0', group: :production
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -91,7 +91,7 @@ group :deployment do
   gem 'dlss-capistrano'
 end
 
-gem 'honeybadger', '~> 2.0'
+gem 'honeybadger'
 
 # Use is_it_working to monitor the application
 gem 'is_it_working'
