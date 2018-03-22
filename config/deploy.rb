@@ -37,3 +37,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('config/settings',
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
+
+# honeybadger_env otherwise defaults to rails_env
+# we want prod rather than production
+set :honeybadger_env, fetch(:stage)
