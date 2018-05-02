@@ -1,3 +1,6 @@
+addons:
+  chrome: stable
+
 notifications:
   email: false
 
@@ -7,6 +10,17 @@ rvm:
 env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
-
+    - CC_TEST_REPORTER_ID=b98fe5aebf04182ce41bd3a2f5233db1d9fcf0c5950b21cf1216c121ca4a457c
 sudo: false
 language: ruby
+
+before_install:
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
