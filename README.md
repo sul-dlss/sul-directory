@@ -1,6 +1,4 @@
 [![Build Status](https://travis-ci.org/sul-dlss/sul-directory.svg?branch=master)](https://travis-ci.org/sul-dlss/sul-directory)
-[![Coverage Status](https://coveralls.io/repos/sul-dlss/sul-directory/badge.svg)](https://coveralls.io/r/sul-dlss/sul-directory)
-[![Dependency Status](https://gemnasium.com/sul-dlss/sul-directory.svg)](https://gemnasium.com/sul-dlss/sul-directory)
 
 # SUL Staff Directory
 
