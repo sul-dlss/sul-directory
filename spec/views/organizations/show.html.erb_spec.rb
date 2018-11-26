@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'organizations/show', type: :view do
@@ -6,7 +8,7 @@ RSpec.describe 'organizations/show', type: :view do
                                             admin_id: 'Code',
                                             name: 'Name',
                                             parent_id: 1
-    ))
+                                          ))
   end
 
   it 'renders attributes in <p>' do

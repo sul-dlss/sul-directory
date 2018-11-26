@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe LdapSearch do
@@ -74,7 +76,7 @@ describe LdapSearch do
     end
 
     it 'parses multi-valued values' do
-      expect(subject.first['multivalued']).to match_array %w(1 2 3)
+      expect(subject.first['multivalued']).to match_array %w[1 2 3]
     end
 
     it 'parses multi-line and -value values' do
@@ -98,7 +100,7 @@ describe LdapSearch do
 
       it 'creates separate records for each person' do
         expect(subject.count(&:present?)).to eq 3
-        expect(subject.reject(&:blank?).map { |x| x['uid'] }).to match_array %w(0001 0002 0003)
+        expect(subject.reject(&:blank?).map { |x| x['uid'] }).to match_array %w[0001 0002 0003]
       end
     end
   end
@@ -109,7 +111,7 @@ describe LdapSearch do
     end
 
     it 'includes the requested fields' do
-      expect(described_class.new.fields(%w(a b c)).to_s).to end_with 'a b c'
+      expect(described_class.new.fields(%w[a b c]).to_s).to end_with 'a b c'
     end
 
     describe 'filters' do
@@ -118,7 +120,7 @@ describe LdapSearch do
       end
 
       it 'makes multivalued requests' do
-        expect(described_class.new.filters(uid: %w(a b)).to_s).to end_with '"(&(|(uid=a)(uid=b)))"'
+        expect(described_class.new.filters(uid: %w[a b]).to_s).to end_with '"(&(|(uid=a)(uid=b)))"'
       end
 
       it 'makes compound queries' do

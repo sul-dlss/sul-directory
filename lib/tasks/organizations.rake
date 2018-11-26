@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :directory do
   desc 'Seed the database from the Stanford org chart'
   task import_org_chart: [:environment] do

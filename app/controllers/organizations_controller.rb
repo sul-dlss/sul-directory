@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class OrganizationsController < ApplicationController
-  before_action :set_organization, only: [:show, :edit, :update, :destroy]
+  before_action :set_organization, only: %i[show edit update destroy]
 
   # GET /organizations
   # GET /organizations.json
@@ -9,8 +11,7 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/1
   # GET /organizations/1.json
-  def show
-  end
+  def show; end
 
   # GET /organizations/new
   def new
@@ -18,8 +19,7 @@ class OrganizationsController < ApplicationController
   end
 
   # GET /organizations/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /organizations
   # POST /organizations.json

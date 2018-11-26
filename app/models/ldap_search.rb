@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Wrapper for the `ldapsearch` command (we shell out so we can use SASL authentication
 # with our kerberos credentials, because it's not clear we can do that from ruby-land
 # reliably).
@@ -11,7 +13,7 @@ class LdapSearch
     # @return [Array<String>] an array of uids
     def in_organization(admin_id)
       admin_ids = Organization.in_tree(Organization.find_by(admin_id: admin_id)).pluck(:admin_id)
-      Parallel.map(admin_ids) { |id| search(suprimaryorganizationid: id, auth: true, fields: %w(uid suAffiliation)) }
+      Parallel.map(admin_ids) { |id| search(suprimaryorganizationid: id, auth: true, fields: %w[uid suAffiliation]) }
               .flatten
               .select { |h| Array(h['suAffiliation']).any? { |p| whitelisted_affiliations.include? p } }
               .map { |h| h['uid'] }.compact

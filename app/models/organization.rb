@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 ##
 # Hierarchical organizations and names
-class Organization < ActiveRecord::Base
+class Organization < ApplicationRecord
   belongs_to :parent, class_name: 'Organization', optional: true
   has_many :children, foreign_key: 'parent_id', class_name: 'Organization'
 
@@ -15,6 +17,7 @@ class Organization < ActiveRecord::Base
 
       loop do
         break if new_ids.empty?
+
         tmp = []
         new_ids.each do |p|
           tmp += p.children.to_a

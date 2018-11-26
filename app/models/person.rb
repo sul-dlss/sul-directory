@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Person < OpenStruct
   include ActiveSupport::Benchmarkable
 
@@ -55,13 +57,14 @@ class Person < OpenStruct
   end
 
   def suPrimaryOrganizationName
-    @suPrimaryOrganizationName ||= I18n.t(:"directory.suPrimaryOrganizationID.#{suPrimaryOrganizationID}", default: [Organization.find_or_initialize_by(admin_id: suPrimaryOrganizationID).name, ou, ''])
+    @suPrimaryOrganizationName ||= I18n.t(:"directory.suPrimaryOrganizationID.#{suPrimaryOrganizationID}",
+                                          default: [Organization.find_or_initialize_by(admin_id: suPrimaryOrganizationID).name, ou, ''])
   end
 
   ##
   # Check if the user has a library "people page"
   def lib_profile?
-    return false unless uid.present?
+    return false if uid.blank?
 
     Rails.cache.fetch("people/drupal/#{org_code}/#{uid}", expires_in: 24.hours) do
       benchmark "People Page (#{uid})" do
