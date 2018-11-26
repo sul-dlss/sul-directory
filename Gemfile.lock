@@ -159,7 +159,6 @@ GEM
     i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
-    is_it_working (1.1.0)
     jaro_winkler (1.5.1)
     jasmine-jquery-rails (2.0.3)
     jbuilder (2.8.0)
@@ -197,6 +196,7 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
+    okcomputer (1.17.3)
     parallel (1.12.1)
     parser (2.5.3.0)
       ast (~> 2.4.0)
@@ -355,13 +355,13 @@ DEPENDENCIES
   factory_bot_rails
   faraday
   honeybadger
-  is_it_working
   jasmine-jquery-rails
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   mysql2 (~> 0.5)
   nokogiri
+  okcomputer
   parallel
   puma (~> 3.11)
   rails (~> 5.2.0)

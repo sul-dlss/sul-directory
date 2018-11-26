@@ -96,9 +96,7 @@ end
 
 gem 'honeybadger'
 
-# Use is_it_working to monitor the application
-gem 'is_it_working'
-
+gem 'okcomputer'
 gem 'config'
 gem 'parallel'
 gem 'whenever'
