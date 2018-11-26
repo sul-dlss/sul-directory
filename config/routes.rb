@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :organizations
   root 'directory#index'
   get 'staff' => 'directory#index'
+  mount OkComputer::Engine, at: "/status"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
