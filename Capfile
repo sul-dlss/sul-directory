@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Load DSL and set up stages
 require 'capistrano/setup'
 
@@ -29,4 +31,4 @@ require 'dlss/capistrano'
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
 
 require 'capistrano/honeybadger'
-require "whenever/capistrano"
+require 'whenever/capistrano'

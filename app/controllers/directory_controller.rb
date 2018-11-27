@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ##
 # Main staff directory controller
 class DirectoryController < ApplicationController

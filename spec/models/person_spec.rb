@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Person do
@@ -30,18 +32,18 @@ describe Person do
 
   describe '.in_organization' do
     it 'finds all persons in a given organization' do
-      expect(LdapSearch).to receive(:in_organization).with('A').and_return(%w(a b))
+      expect(LdapSearch).to receive(:in_organization).with('A').and_return(%w[a b])
       expect(LdapSearch).to receive(:person_info).with(hash_including(uid: 'a')).and_return(uid: 'a', suPrimaryOrganizationID: 'A')
       expect(LdapSearch).to receive(:person_info).with(hash_including(uid: 'b')).and_return(uid: 'b', suPrimaryOrganizationID: 'A')
       allow_any_instance_of(Person).to receive(:lib_profile?)
 
       people = Person.in_organization('A')
       expect(people.length).to eq 2
-      expect(people.map(&:id)).to match_array %w(a b)
+      expect(people.map(&:id)).to match_array %w[a b]
     end
 
     it 'drops any person that cannot be retrieved from LDAP' do
-      expect(LdapSearch).to receive(:in_organization).with('A').and_return(%w(a))
+      expect(LdapSearch).to receive(:in_organization).with('A').and_return(%w[a])
       expect(LdapSearch).to receive(:person_info).with(hash_including(uid: 'a')).and_return(nil)
       people = Person.in_organization('A')
       expect(people).to be_blank

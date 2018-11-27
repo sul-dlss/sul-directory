@@ -1,4 +1,7 @@
+inherit_from: .rubocop_todo.yml
+
 AllCops:
+  TargetRubyVersion: 2.5
   Exclude:
     - 'Gemfile'
     - 'bin/**/*'
@@ -9,10 +12,10 @@ AllCops:
     - 'vendor/**/*'
 
 Rails:
-  Enable: true
+  Enabled: true
 
 Metrics/LineLength:
-  Max: 120
+  Max: 160
 
 Style/StringLiterals:
   Enabled: true
