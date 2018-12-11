@@ -157,7 +157,7 @@ GEM
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     honeybadger (4.1.0)
-    i18n (1.1.1)
+    i18n (1.2.0)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
     jaro_winkler (1.5.1)
@@ -384,4 +384,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.17.1
+   1.17.2
