@@ -145,11 +145,6 @@ GEM
       dry-types (~> 0.14, >= 0.14)
     erubi (1.8.0)
     execjs (2.7.0)
-    factory_bot (5.0.0)
-      activesupport (>= 4.2.0)
-    factory_bot_rails (5.0.0)
-      factory_bot (~> 5.0.0)
-      railties (>= 4.2.0)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.10.0)
@@ -352,7 +347,6 @@ DEPENDENCIES
   config
   database_cleaner
   dlss-capistrano
-  factory_bot_rails
   faraday
   honeybadger
   jasmine-jquery-rails
