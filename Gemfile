@@ -13,8 +13,6 @@ gem 'mysql2', '~> 0.5', group: :production
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 2.7.2'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2', '>= 4.2.1'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
@@ -57,12 +55,6 @@ group :development, :test do
 
   gem 'selenium-webdriver'
   gem 'webdrivers'
-
-  # Teaspoon-jasmine is a wrapper for the Jasmine javascript testing library
-  gem 'teaspoon-jasmine'
-
-  # Allows jQuery integration into the Jasmine javascript testing framework
-  gem 'jasmine-jquery-rails'
 
   # Database cleaner allows us to clean the entire database after certain tests
   gem 'database_cleaner'
