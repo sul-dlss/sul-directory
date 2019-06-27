@@ -1,5 +1,5 @@
 library:
-  profile_url: 'http://library.stanford.edu/people/'
+  profile_url: 'https://library.stanford.edu/people/'
 
 directory:
   org_code: JAAA
