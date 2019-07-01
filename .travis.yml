@@ -1,3 +1,4 @@
+dist: xenial
 addons:
   chrome: stable
 
@@ -5,8 +6,7 @@ notifications:
   email: false
 
 rvm:
-  - 2.5.1
-  - 2.6.0
+  - 2.6.3
 
 env:
   global:
