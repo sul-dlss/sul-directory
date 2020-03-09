@@ -10,8 +10,8 @@ The SUL Staff Directory is a Rails application that:
 
 ## Requirements
 
-1. Ruby (2.2.1 or greater)
-2. Rails (4.2.0 or greater)
+1. Ruby (2.6.3 or greater)
+2. Rails (5.2.0 or greater)
 3. A database
 
 ## Installation
