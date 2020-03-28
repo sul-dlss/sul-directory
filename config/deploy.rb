@@ -21,7 +21,7 @@ set :deploy_to, "/opt/app/#{fetch(:user)}/#{fetch(:user)}"
 # set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, fetch(:linked_files, []).push('config/secrets.yml', 'config/database.yml', 'config/honeybadger.yml', 'public/.htaccess', 'public/robots.txt')
+set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/honeybadger.yml')
 
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('config/settings',
