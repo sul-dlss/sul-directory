@@ -3,7 +3,7 @@ set :repo_url, 'https://github.com/sul-dlss/sul-directory.git'
 set :user, 'directory'
 
 # Default branch is :master
-set :branch, 'master'
+ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call unless ENV['DEPLOY']
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/opt/app/#{fetch(:user)}/#{fetch(:user)}"
