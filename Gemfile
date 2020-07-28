@@ -7,8 +7,7 @@ gem 'rails', '~> 6.0'
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma'
-# mysql 0.5.3 is not compatible with the version of ruby we are using
-gem 'mysql2', '< 0.5.3', group: :production
+gem 'mysql2', group: :production
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
