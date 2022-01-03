@@ -4,7 +4,7 @@
 # with our kerberos credentials, because it's not clear we can do that from ruby-land
 # reliably).
 class LdapSearch
-  class <<self
+  class << self
     include ActiveSupport::Benchmarkable
 
     ##
