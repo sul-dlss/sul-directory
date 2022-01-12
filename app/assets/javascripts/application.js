@@ -12,12 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require 'jquery.dataTables.min'
 //= require 'jquery.dataTables.columnFilter'
 //= require_tree .
 
-$(document).on('turbolinks:load', function(){
+$(function(){
      $('#staffdir').dataTable(
          { "aoColumns": [ null, { "bSortable": false }, { "bSortable": false }, { "bSortable": false }, { "bSortable": false } ],
            "oLanguage": { "sSearch" : "Search this list" },
