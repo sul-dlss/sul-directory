@@ -81,6 +81,7 @@ end
 
 gem 'nokogiri'
 gem 'faraday'
+gem 'net-http'
 
 # Use Capistrano for deployment
 group :deployment do
