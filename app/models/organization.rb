@@ -51,7 +51,7 @@ class Organization < ApplicationRecord
     end
 
     def budget_orgchart
-      url = 'http://registry.stanford.edu/reference/OrgTreeAdministrative.xml'
+      url = 'https://registry.stanford.edu/reference/OrgTreeAdministrative.xml'
       response = Faraday.get(url)
       Nokogiri::XML(response.body)
     end
