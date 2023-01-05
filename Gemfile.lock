@@ -315,9 +315,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    scss-lint (0.38.0)
+    scss_lint (0.43.2)
       rainbow (~> 2.0)
-      sass (~> 3.4.1)
+      sass (~> 3.4.15)
     selenium-webdriver (4.7.1)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -375,6 +375,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-darwin-22
   x86_64-linux
 
 DEPENDENCIES
@@ -406,7 +407,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   sass-rails (~> 5.0)
-  scss-lint
+  scss_lint
   selenium-webdriver
   simplecov
   sprockets-rails
