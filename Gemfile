@@ -26,9 +26,6 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 2.7.2'
 
@@ -72,9 +69,6 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
 
-  # scss_lint will test the scss files to enfoce styles
-  gem 'scss_lint', require: false
-
   gem 'simplecov'
 end
 
@@ -98,3 +92,5 @@ gem 'okcomputer'
 gem 'config'
 gem 'parallel'
 gem 'whenever'
+
+gem "cssbundling-rails", "~> 1.1"

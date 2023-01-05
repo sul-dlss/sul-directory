@@ -22,3 +22,8 @@
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
+
+/node_modules

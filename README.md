@@ -10,8 +10,8 @@ The SUL Staff Directory is a Rails application that:
 
 ## Requirements
 
-1. Ruby (2.6.3 or greater)
-2. Rails (5.2.0 or greater)
+1. Ruby 3.1
+2. Bundler
 3. A database
 
 ## Installation
@@ -30,7 +30,7 @@ Run database migrations
 
 Start the development server
 
-    $ rails s
+    $ bin/dev
 
 ## Configuring
 
@@ -39,19 +39,19 @@ Configuration is handled through the [RailsConfig](/railsconfig/rails_config) se
 ### Harvesting the org chart
 
 ```console
-$ rake db:seed
+$ bin/rails db:seed
 ```
 
 ## Testing
 
 The test suite (with RuboCop style inforcement) will be run with the default rake task (also run on travis)
 
-    $ rake
+    $ bin/rake
 
 The specs can be run without RuboCop enforcement
 
-    $ rake spec
+    $ bin/rake spec
 
 The RuboCop style enforcement can be run without running the tests
 
-    $ rake rubocop
+    $ bin/rake rubocop
