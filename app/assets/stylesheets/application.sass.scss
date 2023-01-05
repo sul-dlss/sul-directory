@@ -1,0 +1,16 @@
+ @import 'jquery.dataTables.min';
+ @import 'sul-style';
+
+
+#staffdir_info {
+  float: left;
+}
+
+#staffdir_paginate {
+  float: right;
+  
+  a {
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+  }
+}
