@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.0"
 
@@ -25,9 +24,6 @@ gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
-
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 2.7.2'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -71,7 +67,6 @@ group :development, :test do
 
   gem 'simplecov'
 end
-
 
 gem 'nokogiri'
 gem 'faraday'
