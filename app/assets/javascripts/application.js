@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery3
-//= require jquery_ujs
+//= require rails-ujs
 //= require 'jquery.dataTables.min'
 //= require 'jquery.dataTables.columnFilter'
 //= require_tree .
