@@ -86,6 +86,6 @@ gem 'honeybadger'
 gem 'okcomputer'
 gem 'config'
 gem 'parallel'
-gem 'whenever'
+gem 'whenever', require: false # Work around https://github.com/javan/whenever/issues/831
 
 gem "cssbundling-rails", "~> 1.1"
