@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :organizations
+  resources :organizations if Rails.env.test? || ENV['ORGANIZATIONS_ENABLED']
   root 'directory#index'
   get 'staff' => 'directory#index'
   mount OkComputer::Engine, at: "/status"
