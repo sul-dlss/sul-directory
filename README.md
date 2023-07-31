@@ -34,7 +34,7 @@ Start the development server
 
 ## Configuring
 
-Configuration is handled through the [RailsConfig](/railsconfig/rails_config) settings.yml files.
+Configuration is handled through the [Config](https://github.com/rubyconfig/config) settings.yml files.
 
 ### Harvesting the org chart
 
