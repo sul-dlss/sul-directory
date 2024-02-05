@@ -12,4 +12,4 @@ class LDAPCheck < OkComputer::Check
 end
 
 OkComputer::Registry.register 'ldap', LDAPCheck.new
-OkComputer::Registry.register 'http_libraries_url_check', OkComputer::HttpCheck.new(Settings.library.profile_url + 'subject-libraries')
+OkComputer::Registry.register 'http_libraries_url_check', OkComputer::HttpCheck.new(Settings.library.profile_url)
