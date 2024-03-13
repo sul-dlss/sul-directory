@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/sul-dlss/sul-directory.svg?branch=master)](https://travis-ci.org/sul-dlss/sul-directory)
-
 # SUL Staff Directory
 
 The SUL Staff Directory is a Rails application that:
