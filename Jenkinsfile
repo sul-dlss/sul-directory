@@ -23,7 +23,7 @@ pipeline {
           export DEPLOY=1
 
           # Load RVM
-          rvm use 3.1.2@library-hours --create
+          rvm use 3.2.3@library-hours --create
           gem install bundler
 
           bundle install --without production
@@ -50,13 +50,13 @@ pipeline {
       }
     }
 
-    stage('Deploy on release') {
+    stage('Deploy to -prod') {
       environment {
         DEPLOY_ENVIRONMENT = 'prod'
       }
 
       when {
-        tag "v*"
+        branch 'main'
       }
 
       steps {
@@ -68,7 +68,7 @@ pipeline {
           export REVISION=$TAG_NAME
 
           # Load RVM
-          rvm use 3.1.2@library-hours --create
+          rvm use 3.2.3@library-hours --create
           gem install bundler
 
           bundle install --without production
