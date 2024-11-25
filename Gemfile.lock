@@ -166,7 +166,7 @@ GEM
       net-http (>= 0.5.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    honeybadger (5.22.0)
+    honeybadger (5.24.0)
       logger
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
@@ -199,9 +199,9 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     mini_mime (1.1.5)
-    minitest (5.25.1)
+    minitest (5.25.2)
     msgpack (1.7.5)
-    mutex_m (0.2.0)
+    mutex_m (0.3.0)
     mysql2 (0.5.6)
     net-http (0.5.0)
       uri
@@ -233,7 +233,7 @@ GEM
     psych (5.2.0)
       stringio
     public_suffix (6.0.1)
-    puma (6.4.3)
+    puma (6.5.0)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.1.8)
@@ -278,7 +278,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.2.1)
-    rdoc (6.7.0)
+    rdoc (6.8.1)
       psych (>= 4.0.0)
     regexp_parser (2.9.2)
     reline (0.5.11)
