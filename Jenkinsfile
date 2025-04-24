@@ -23,7 +23,7 @@ pipeline {
           export DEPLOY=1
 
           # Load RVM
-          rvm use 3.2.3@library-hours --create
+          rvm use 3.4.1@library-hours --create
           gem install bundler
 
           bundle install --without production
@@ -68,7 +68,7 @@ pipeline {
           export REVISION=$TAG_NAME
 
           # Load RVM
-          rvm use 3.2.3@library-hours --create
+          rvm use 3.4.1@library-hours --create
           gem install bundler
 
           bundle install --without production
