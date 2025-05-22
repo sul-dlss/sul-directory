@@ -11,4 +11,4 @@ directory:
     options: '-q -f /etc/keytabs/webauth.keytab -U'
     required: true
   ldapsearch:
-    options:  -h directory.stanford.edu -b cn=people,dc=stanford,dc=edu
+    options:  -H ldap://directory.stanford.edu -b cn=people,dc=stanford,dc=edu
