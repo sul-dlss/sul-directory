@@ -122,8 +122,6 @@ GEM
       ostruct
     connection_pool (3.0.2)
     crass (1.0.6)
-    cssbundling-rails (1.4.3)
-      railties (>= 6.0.0)
     database_cleaner (2.1.0)
       database_cleaner-active_record (>= 2, < 3)
     database_cleaner-active_record (2.2.2)
@@ -408,7 +406,6 @@ DEPENDENCIES
   capistrano-rvm
   capybara
   config
-  cssbundling-rails (~> 1.1)
   database_cleaner
   debug
   dlss-capistrano

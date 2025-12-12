@@ -1,0 +1,188 @@
+@import "jquery.dataTables.min.css";
+
+#staffdir_info {
+  float: left;
+}
+
+#staffdir_paginate {
+  float: right;
+
+  a {
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+  }
+}
+
+* {
+  color: #3f3c30;
+  font-family:
+    Lucida Grande,
+    Verdana,
+    Arial,
+    sans-serif;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 1.65em;
+  line-height: 1.5em;
+  margin-bottom: 10px;
+  color: #820000;
+  font-weight: normal;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+a:link,
+a:visited,
+li a.active {
+  color: #575246;
+  outline: none;
+  text-decoration: none;
+}
+
+a {
+  border-bottom: 1px dotted #84785a;
+}
+
+table.dataTable {
+  clear: both;
+  margin: 1em 0;
+  width: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+thead:first-child {
+  border-top: 1px solid #bbb;
+  background: #ddd;
+}
+
+thead tr {
+  border-bottom: 1px solid #ccc;
+}
+
+th,
+tr,
+td {
+  padding: 5px 10px;
+  vertical-align: middle;
+}
+
+th {
+  border-bottom: 3px solid #ccc;
+  padding-right: 1em;
+  text-align: left;
+  font-weight: bold;
+}
+
+tbody {
+  border-top: 1px solid #ccc;
+}
+
+tr.even,
+tr.odd {
+  background-color: #eee;
+  border-bottom: 1px solid #ccc;
+  padding: 0.1em 0.6em;
+}
+
+tr.odd,
+tr.odd td.sorting_1 {
+  background-color: #f6f6f6;
+}
+
+tr.even,
+tr.even td.sorting_1 {
+  background-color: #ececec;
+  border-bottom: 1px solid #ddd;
+}
+
+table.display thead th {
+  background-color: transparent;
+  border-bottom: 0;
+}
+
+.dataTables_length {
+  float: right;
+  text-align: right;
+  width: 40%;
+}
+
+.dataTables_filter {
+  float: left;
+  text-align: left;
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.paginate_button.disabled.previous {
+  background: none no-repeat top left;
+  border-bottom: none;
+}
+
+.paginate_button.disabled.next {
+  background: none no-repeat top right;
+  border-bottom: none;
+}
+
+.paginate_button.next {
+  padding-right: 16px;
+  background: image_url("rightarrow.png") no-repeat top right;
+}
+
+.paginate_button.previous {
+  padding-left: 16px;
+  background: image_url("leftarrow.png") no-repeat top left;
+}
+
+.paginate_button {
+  height: 16px;
+  cursor: pointer;
+}
+.paginate_button.disabled {
+  cursor: not-allowed;
+}
+table.display thead th .sorting_disabled {
+  cursor: default;
+}
+
+table.display thead th.sorting_asc,
+table.display thead th.sorting_desc {
+  background: none;
+}
+
+select.select_filter {
+  width: 150px;
+}
+
+td:first-child {
+  white-space: nowrap;
+}
+
+td:first-child a {
+  border-bottom: none;
+}
+td:first-child a img,
+#staffdir img {
+  vertical-align: text-bottom;
+}
+
+td[property="telephone"] {
+  white-space: nowrap;
+  max-width: 14ch;
+}
+
+#staffdir_filter input {
+  margin-left: 0.3em;
+}
+
+#staffdir_wrapper {
+  max-width: 1200px;
+}
