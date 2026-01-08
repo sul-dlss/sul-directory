@@ -45,3 +45,6 @@ set :linked_dirs, fetch(:linked_dirs, []).push('config/settings',
 # honeybadger_env otherwise defaults to rails_env
 # we want prod rather than production
 set :honeybadger_env, fetch(:stage)
+
+# See https://github.com/capistrano/bundler/pull/137
+set :bundle_version, 4
