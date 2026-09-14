@@ -86,3 +86,4 @@ gem 'okcomputer'
 gem 'config'
 gem 'parallel'
 gem 'whenever', require: false # Work around https://github.com/javan/whenever/issues/831
+gem 'json', '~> 2.0' # remove once https://github.com/rails/rails/issues/56291 is fixed
