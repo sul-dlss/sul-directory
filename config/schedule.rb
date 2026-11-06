@@ -19,6 +19,9 @@
 
 # Learn more: http://github.com/javan/whenever
 
+# Disable Honeybadger Insights for cron jobs
+env :HONEYBADGER_INSIGHTS_ENABLED, false
+
 every :day, at: '12:00am' do
   rake 'directory:import_org_chart'
 end
